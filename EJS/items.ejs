@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><%= type %> | Sweet Scoops</title>
+	<link rel="stylesheet" href="../style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baby+Kruffy&display=swap">
+	<style>
+		header h1 {
+			font-family: 'Baby Kruffy', cursive;
+			font-size: 3rem;
+			text-align: center;
+			margin-top: 20px;
+			color: #ff6600;
+		}
+		
+		.flavor {
+			position: relative;
+			margin-bottom: 30px;
+			width: calc(50% - 20px); /* Adjusted width to make flavours grid smaller */
+			max-width: 300px; /* Set maximum width for each flavor */
+		}
+		
+		.legend {
+			position: relative;
+			display: flex;
+			margin-bottom: 30px;
+		}
+
+		.legend h2 {
+			flex: 20%;
+		}
+		
+		.flavor img {
+			width: 100%;
+			border-radius: 10px;
+			margin-bottom: 10px; /* Added margin to separate image from text */
+		}
+		
+		.flavor-content {
+			padding: 0 10px; /* Added padding to the flavor content */
+		}
+		
+		.choose-button {
+			display: block; /* Make button a block element */
+			margin-top: 10px; /* Added margin to separate button from text */
+			background-color: #ff6600;
+			color: #fff;
+			padding: 8px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+		
+		.choose-button:hover {
+			background-color: #ff8533;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Choose Your <%= type %></h1>
+		<button onclick="window.location.href='../'">Back to Home Page</button>
+
+		<article class="legend">
+			<h2>🎩:- Special</h2>
+			<h2>🥚:- Contains Egg</h2>
+			<h2>🍾:- Contains Alcohol</h2>
+		</article>
+	</header>
+
+	<main class="flavours-container">
+		<% items.forEach(item => { %>
+			<article class="flavor">
+				<h2><%= item.name %></h2>
+				<img src="/Images/<%= item.src %>" alt="<%= item.name %>">
+				<div class="flavor-content">
+					<p><%= item.desc %></p>
+					<button class="choose-button" onclick="addToCart('<%= item.name %>')">Add to Cart</button>
+				</div>
+			</article>
+		<% }) %>
+	</main>
+
+	<footer>
+		<button onclick="window.location.href='cart'">View Cart</button>
+		<p>&copy; 2024 Sweet Scoops. All rights reserved.</p>
+	</footer>
+
+	<script src="../script.js"></script>
+</body>
+</html>
